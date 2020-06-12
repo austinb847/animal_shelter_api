@@ -37,6 +37,10 @@ class AnimalsController < ApplicationController
     json_response(@animal)
   end
 
+  def search
+    
+  end
+
   private
   def animal_params
     params.permit(:species, :breed, :age, :name, :gender)
