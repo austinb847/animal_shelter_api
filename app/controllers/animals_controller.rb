@@ -38,12 +38,20 @@ class AnimalsController < ApplicationController
   end
 
   def search
-    
+   @animals = Animal.where(nil)
+   search_params(params).each do |key, value|
+    @animals = @animals.public_send("search_by_#{key.downcase}", value) if value.present?
+   end
+   json_response(@animals)
   end
 
   private
   def animal_params
     params.permit(:species, :breed, :age, :name, :gender)
+  end
+
+  def search_params(params)
+    params.slice(:species, :breed, :gender)
   end
 
 
