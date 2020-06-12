@@ -32,6 +32,11 @@ class AnimalsController < ApplicationController
     end
   end
 
+  def random
+    @animal = Animal.random_animal
+    json_response(@animal)
+  end
+
   private
   def animal_params
     params.permit(:species, :breed, :age, :name, :gender)
