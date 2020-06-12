@@ -29,4 +29,15 @@ describe "post a animal route", :type => :request do
   it 'returns a created status' do
     expect(response).to have_http_status(:created)
   end
+
+  it 'returns an 422 unprocessable entity status' do
+    post '/animals', params: { :breed => 'lab', :age => 3 }  
+    expect(response).to have_http_status(:unprocessable_entity)
+  end
+
+  it 'returns the unprocessable entity error message' do
+    post '/animals', params: { }  
+    expect(JSON.parse(response.body)['message']).to eq("Validation failed: Species can't be blank, Breed can't be blank, Age can't be blank, Name can't be blank, Gender can't be blank")
+  end
+
 end
