@@ -40,7 +40,7 @@ class AnimalsController < ApplicationController
   def search
    @animals = Animal.where(nil)
    search_params(params).each do |key, value|
-    @animals = @animals.public_send("search_by_#{key.downcase}", value) if value.present?
+    @animals = @animals.public_send("search_by_#{key}", value.downcase) if value.present?
    end
 
    if @animals.length == 0
