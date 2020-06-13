@@ -42,7 +42,14 @@ class AnimalsController < ApplicationController
    search_params(params).each do |key, value|
     @animals = @animals.public_send("search_by_#{key.downcase}", value) if value.present?
    end
-   json_response(@animals)
+   
+   if @animals.length == 0
+    render status: 200, json: {
+      message: "No animals based on your search."
+      }
+    else
+      json_response(@animals)
+    end
   end
 
   private
