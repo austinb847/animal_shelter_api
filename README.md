@@ -30,6 +30,11 @@ _An API for adoptable dogs and cats from a local shelter_
 | GET       | http://localhost:3000/search/?gender=male&?species=dog&?breed=labrador | Get animals by searching     | gender, species, or breed |
 
 
+## Rate Limiting:
+
+* Rack-attack gem used to limit requests. By default it is configured for 100 requests per 2 minutes. To change limit and period navigate to config/initializers/rack_attack.rb 
+
+
 ## Technologies Used
 
 * Ruby/Rails
